@@ -50,12 +50,12 @@ sim4 <- sim4[1:(30*1084),] + bias
 ## ---- Verification ------ ##
 verA <- array(NaN,dim = c(49,4))
 verB <- array(NaN,dim = c(49,4))
-rank.B <- array(NaN,dim = c(1086,49))
+rank.B <- array(NaN,dim = c(1084,49))
 verC <- array(NaN,dim = c(49,4))
 verD <- array(NaN,dim = c(49,4))
-rank.D <- array(NaN,dim = c(1086,49))
+rank.D <- array(NaN,dim = c(1084,49))
 verE <- array(NaN,dim = c(49,4))
-rank.E <- array(NaN,dim = c(1086,49))
+rank.E <- array(NaN,dim = c(1084,49))
 colnames0 <- c('bias','rmse','crps','alpha')
 colnames(verB)<-colnames0
 colnames(verC)<-colnames0
