@@ -50,9 +50,12 @@ sim4 <- sim4[1:(30*1084),] + bias
 ## ---- Verification ------ ##
 verA <- array(NaN,dim = c(49,4))
 verB <- array(NaN,dim = c(49,4))
+rank.B <- array(NaN,dim = c(1086,49))
 verC <- array(NaN,dim = c(49,4))
 verD <- array(NaN,dim = c(49,4))
+rank.D <- array(NaN,dim = c(1086,49))
 verE <- array(NaN,dim = c(49,4))
+rank.E <- array(NaN,dim = c(1086,49))
 colnames0 <- c('bias','rmse','crps','alpha')
 colnames(verB)<-colnames0
 colnames(verC)<-colnames0
@@ -73,6 +76,7 @@ for (ilead in 1:49){#48
   rank_m <- (ranks-1)/no_ens
   f <- ecdf(rank_m)
   verE[ilead,4] <- 1-2*mean(abs(f(probs0)-probs0))
+  rank.E[,ilead] <- ranks 
   ## DA observed -- sim B
   forecast <- matrix(sim2[,ilead],nrow = 1084,ncol = no_ens,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
@@ -84,6 +88,7 @@ for (ilead in 1:49){#48
   rank_m <- (ranks-1)/no_ens
   f <- ecdf(rank_m)
   verB[ilead,4] <- 1-2*mean(abs(f(probs0)-probs0))
+  rank.B[,ilead] <- ranks 
   ## DA No perturbed -- sim D
   forecast <- matrix(sim4[,ilead],nrow = 1084,ncol = no_ens,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
@@ -95,6 +100,7 @@ for (ilead in 1:49){#48
   rank_m <- (ranks-1)/no_ens
   f <- ecdf(rank_m)
   verD[ilead,4] <- 1-2*mean(abs(f(probs0)-probs0))
+  rank.D[,ilead] <- ranks 
   ## No DA -- sim C
   forecast <- matrix(sim5[c(1:1084),ilead],nrow = 1084,ncol = 1,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
@@ -111,17 +117,26 @@ for (ilead in 1:49){#48
   verA[ilead,3] <- mean(EnsCrps(forecast,obs0[,ilead]),na.rm = TRUE)
 }# End lead time
 
-file0 <- paste0(Dir,'xin_data/head/performance_B.txt')
-write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
+# file0 <- paste0(Dir,'xin_data/head/performance_B.txt')
+# write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
+# 
+# file0 <- paste0(Dir,'xin_data/head/performance_C.txt')
+# write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
+# 
+# file0 <- paste0(Dir,'xin_data/head/performance_D.txt')
+# write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
+# 
+# file0 <- paste0(Dir,'xin_data/head/performance_E.txt')
+# write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
+# 
+# file0 <- paste0(Dir,'xin_data/head/performance_A.txt')
+# write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
 
-file0 <- paste0(Dir,'xin_data/head/performance_C.txt')
-write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
+file0 <- paste0(Dir,'xin_data/head/performance_B_rank.txt')
+write.table(rank.B,file = file0,col.names = FALSE,row.names = FALSE)
 
-file0 <- paste0(Dir,'xin_data/head/performance_D.txt')
-write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
+file0 <- paste0(Dir,'xin_data/head/performance_D_rank.txt')
+write.table(rank.D,file = file0,col.names = FALSE,row.names = FALSE)
 
-file0 <- paste0(Dir,'xin_data/head/performance_E.txt')
-write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
-
-file0 <- paste0(Dir,'xin_data/head/performance_A.txt')
-write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
+file0 <- paste0(Dir,'xin_data/head/performance_E_rank.txt')
+write.table(rank.E,file = file0,col.names = FALSE,row.names = FALSE)
