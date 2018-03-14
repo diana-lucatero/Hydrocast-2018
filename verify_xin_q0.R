@@ -103,14 +103,14 @@ for (ilead in 1:48){#48
   ## Bias [forecast-observation]
   verC[ilead,1] <- mean(forecast_mean[dat],na.rm = T) - mean(obs0[dat,ilead],na.rm = T)
   verC[ilead,2] <- rmse(forecast_mean[dat],obs0[dat,ilead],na.rm=T)
-  verC[ilead,3] <- mean(EnsCrps(forecast[dat,],obs0[dat,ilead]),na.rm = TRUE)
+  verC[ilead,3] <- mean(EnsCrps(as.matrix(forecast[dat,]),as.matrix(obs0[dat,ilead])),na.rm = TRUE)
   ## No DA - No perturbed -- sim A
   forecast <- matrix(sim1[,ilead],nrow = 1085,ncol = 1,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
   ## Bias [forecast-observation]
   verA[ilead,1] <- mean(forecast_mean[dat],na.rm = T) - mean(obs0[dat,ilead],na.rm = T)
   verA[ilead,2] <- rmse(forecast_mean[dat],obs0[dat,ilead],na.rm=T)
-  verA[ilead,3] <- mean(EnsCrps(forecast[dat,],obs0[dat,ilead]),na.rm = TRUE)
+  verA[ilead,3] <- mean(EnsCrps(as.matrix(forecast[dat,]),as.matrix(obs0[dat,ilead])),na.rm = TRUE)
 }# End lead time
 
 file0 <- paste0(Dir,'xin_data/discharge/events/performance_B.txt')
