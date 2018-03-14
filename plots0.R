@@ -50,8 +50,8 @@ png(name_plt,width=900,height=900)
 layout(mat = m,heights = c(1,1,0.2))
 par(mar=c(5.1,8,4.1,2.1))
 col0 <- c('black','firebrick3','goldenrod1','forestgreen','hotpink4')
-ylim0 <- c(0,0.05)
-ylim1 <- c(-0.008,0.008)
+ylim0 <- c(0,0.12)
+ylim1 <- c(-0.1,0.1)
 pch0 <- 19
 
 ## ------------------------- Surface water --------------------------------- ##
