@@ -9,6 +9,9 @@ library(hydroGOF)
 # Load dates info
 file <- paste0(Dir,'info_dates.txt')
 dates <- t(matrix(scan(file),nrow = 1,ncol = 1086))
+## Load number of rows for 5 events
+file <- paste0(Dir,'xin_data/dates_events_phase.txt')
+dat <- t(matrix(scan(file),nrow = 1,ncol = 89))
 ## Extra information
 no_ens <- 30
 name_st <- c('3278')
