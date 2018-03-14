@@ -53,12 +53,12 @@ sim4 <- sim4[1:(30*1084),] + bias
 ## ---- Verification ------ ##
 verA <- array(NaN,dim = c(49,4))
 verB <- array(NaN,dim = c(49,4))
-rank.B <- array(NaN,dim = c(1084,49))
+rank.B <- array(NaN,dim = c(length(dat),49))
 verC <- array(NaN,dim = c(49,4))
 verD <- array(NaN,dim = c(49,4))
-rank.D <- array(NaN,dim = c(1084,49))
+rank.D <- array(NaN,dim = c(length(dat),49))
 verE <- array(NaN,dim = c(49,4))
-rank.E <- array(NaN,dim = c(1084,49))
+rank.E <- array(NaN,dim = c(length(dat),49))
 colnames0 <- c('bias','rmse','crps','alpha')
 colnames(verB)<-colnames0
 colnames(verC)<-colnames0
@@ -72,10 +72,10 @@ for (ilead in 1:49){#48
   forecast <- matrix(sim3[,ilead],nrow = 1084,ncol = no_ens,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
   ## Bias [forecast-observation]
-  verE[ilead,1] <- mean(forecast_mean,na.rm = T) - mean(obs0[,ilead],na.rm = T)
-  verE[ilead,2] <- rmse(forecast_mean,obs0[,ilead],na.rm=T)
-  verE[ilead,3] <- mean(EnsCrps(forecast,obs0[,ilead]),na.rm = TRUE)
-  ranks <- apply(cbind(obs0[,ilead],forecast), 1, rank, ties.method="last")[1, ]
+  verE[ilead,1] <- mean(forecast_mean[dat],na.rm = T) - mean(obs0[dat,ilead],na.rm = T)
+  verE[ilead,2] <- rmse(forecast_mean[dat],obs0[dat,ilead],na.rm=T)
+  verE[ilead,3] <- mean(EnsCrps(forecast[dat,],obs0[dat,ilead]),na.rm = TRUE)
+  ranks <- apply(cbind(obs0[dat,ilead],forecast[dat,]), 1, rank, ties.method="last")[1, ]
   rank_m <- (ranks-1)/no_ens
   f <- ecdf(rank_m)
   verE[ilead,4] <- 1-2*mean(abs(f(probs0)-probs0))
@@ -84,10 +84,10 @@ for (ilead in 1:49){#48
   forecast <- matrix(sim2[,ilead],nrow = 1084,ncol = no_ens,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
   ## Bias [forecast-observation]
-  verB[ilead,1] <- mean(forecast_mean,na.rm = T) - mean(obs0[,ilead],na.rm = T)
-  verB[ilead,2] <- rmse(forecast_mean,obs0[,ilead],na.rm=T)
-  verB[ilead,3] <- mean(EnsCrps(forecast,obs0[,ilead]),na.rm = TRUE)
-  ranks <- apply(cbind(obs0[,ilead],forecast), 1, rank, ties.method="last")[1, ]
+  verB[ilead,1] <- mean(forecast_mean[dat],na.rm = T) - mean(obs0[dat,ilead],na.rm = T)
+  verB[ilead,2] <- rmse(forecast_mean[dat],obs0[dat,ilead],na.rm=T)
+  verB[ilead,3] <- mean(EnsCrps(forecast[dat,],obs0[dat,ilead]),na.rm = TRUE)
+  ranks <- apply(cbind(obs0[dat,ilead],forecast[dat,]), 1, rank, ties.method="last")[1, ]
   rank_m <- (ranks-1)/no_ens
   f <- ecdf(rank_m)
   verB[ilead,4] <- 1-2*mean(abs(f(probs0)-probs0))
@@ -96,10 +96,10 @@ for (ilead in 1:49){#48
   forecast <- matrix(sim4[,ilead],nrow = 1084,ncol = no_ens,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
   ## Bias [forecast-observation]
-  verD[ilead,1] <- mean(forecast_mean,na.rm = T) - mean(obs0[,ilead],na.rm = T)
-  verD[ilead,2] <- rmse(forecast_mean,obs0[,ilead],na.rm=T)
-  verD[ilead,3] <- mean(EnsCrps(forecast,obs0[,ilead]),na.rm = TRUE)
-  ranks <- apply(cbind(obs0[,ilead],forecast), 1, rank, ties.method="last")[1, ]
+  verD[ilead,1] <- mean(forecast_mean[dat],na.rm = T) - mean(obs0[dat,ilead],na.rm = T)
+  verD[ilead,2] <- rmse(forecast_mean[dat],obs0[dat,ilead],na.rm=T)
+  verD[ilead,3] <- mean(EnsCrps(forecast[dat,],obs0[dat,ilead]),na.rm = TRUE)
+  ranks <- apply(cbind(obs0[dat,ilead],forecast[dat,]), 1, rank, ties.method="last")[1, ]
   rank_m <- (ranks-1)/no_ens
   f <- ecdf(rank_m)
   verD[ilead,4] <- 1-2*mean(abs(f(probs0)-probs0))
@@ -108,38 +108,38 @@ for (ilead in 1:49){#48
   forecast <- matrix(sim5[c(1:1084),ilead],nrow = 1084,ncol = 1,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
   ## Bias [forecast-observation]
-  verC[ilead,1] <- mean(forecast_mean,na.rm = T) - mean(obs0[,ilead],na.rm = T)
-  verC[ilead,2] <- rmse(forecast_mean,obs0[,ilead],na.rm=T)
-  verC[ilead,3] <- mean(EnsCrps(forecast,obs0[,ilead]),na.rm = TRUE)
+  verC[ilead,1] <- mean(forecast_mean[dat],na.rm = T) - mean(obs0[dat,ilead],na.rm = T)
+  verC[ilead,2] <- rmse(forecast_mean[dat],obs0[dat,ilead],na.rm=T)
+  verC[ilead,3] <- mean(EnsCrps(forecast[dat,],obs0[dat,ilead]),na.rm = TRUE)
   ## No DA No forecast -- sim A
   forecast <- matrix(sim1[c(1:1084),ilead],nrow = 1084,ncol = 1,byrow = TRUE)
   forecast_mean <- rowMedians(forecast)
   ## Bias [forecast-observation]
-  verA[ilead,1] <- mean(forecast_mean,na.rm = T) - mean(obs0[,ilead],na.rm = T)
-  verA[ilead,2] <- rmse(forecast_mean,obs0[,ilead],na.rm=T)
-  verA[ilead,3] <- mean(EnsCrps(forecast,obs0[,ilead]),na.rm = TRUE)
+  verA[ilead,1] <- mean(forecast_mean[dat],na.rm = T) - mean(obs0[dat,ilead],na.rm = T)
+  verA[ilead,2] <- rmse(forecast_mean[dat],obs0[dat,ilead],na.rm=T)
+  verA[ilead,3] <- mean(EnsCrps(forecast[dat,],obs0[dat,ilead]),na.rm = TRUE)
 }# End lead time
 
-# file0 <- paste0(Dir,'xin_data/head/performance_B.txt')
-# write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_C.txt')
-# write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_D.txt')
-# write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_E.txt')
-# write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_A.txt')
-# write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
+file0 <- paste0(Dir,'xin_data/head/events/performance_B.txt')
+write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
 
-file0 <- paste0(Dir,'xin_data/head/performance_B_rank.txt')
+file0 <- paste0(Dir,'xin_data/head/events/performance_C.txt')
+write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/events/performance_D.txt')
+write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/events/performance_E.txt')
+write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/events/performance_A.txt')
+write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/events/performance_B_rank.txt')
 write.table(rank.B,file = file0,col.names = FALSE,row.names = FALSE)
 
-file0 <- paste0(Dir,'xin_data/head/performance_D_rank.txt')
+file0 <- paste0(Dir,'xin_data/head/events/performance_D_rank.txt')
 write.table(rank.D,file = file0,col.names = FALSE,row.names = FALSE)
 
-file0 <- paste0(Dir,'xin_data/head/performance_E_rank.txt')
+file0 <- paste0(Dir,'xin_data/head/events/performance_E_rank.txt')
 write.table(rank.E,file = file0,col.names = FALSE,row.names = FALSE)
