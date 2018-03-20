@@ -110,20 +110,20 @@ for (ilead in 1:48){#48
   verA[ilead,3] <- mean(EnsCrps(forecast,obs0[c(1:1085),ilead]),na.rm = TRUE)
 }# End lead time
 
-# file0 <- paste0(Dir,'xin_data/discharge/performance_B.txt')
-# write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/discharge/performance_C.txt')
-# write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/discharge/performance_D.txt')
-# write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/discharge/performance_E.txt')
-# write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/discharge/performance_A.txt')
-# write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
+file0 <- paste0(Dir,'xin_data/discharge/performance_B.txt')
+write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/discharge/performance_C.txt')
+write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/discharge/performance_D.txt')
+write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/discharge/performance_E.txt')
+write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/discharge/performance_A.txt')
+write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
 
 file0 <- paste0(Dir,'xin_data/discharge/performance_B_rank.txt')
 write.table(rank.B,file = file0,col.names = FALSE,row.names = FALSE)

@@ -130,7 +130,7 @@ lines(dataC.h$bias,type='o',pch=pch0,col= col0[3],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
 lines(dataD.h$bias,type='o',pch=pch0,col= col0[4],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
-lines(dataE.h$bias,type='o',pch=pch0,col= col0[4],ylim = ylim0,
+lines(dataE.h$bias,type='o',pch=pch0,col= col0[5],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
 grid(nx=NULL,ny=NULL,col = 'lightgray',lty = 'dotted',equilogs = TRUE)
 axis(1,at=seq(0,48,4),labels =seq(0,48,4),cex.axis=1.5,las= HORIZONTAL<-1)
@@ -151,7 +151,7 @@ lines(dataC.h$rmse,type='o',pch=pch0,col= col0[3],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
 lines(dataD.h$rmse,type='o',pch=pch0,col= col0[4],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
-lines(dataE.h$rmse,type='o',pch=pch0,col= col0[4],ylim = ylim0,
+lines(dataE.h$rmse,type='o',pch=pch0,col= col0[5],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
 grid(nx=NULL,ny=NULL,col = 'lightgray',lty = 'dotted',equilogs = TRUE)
 axis(1,at=seq(0,48,4),labels =seq(0,48,4),cex.axis=1.5,las= HORIZONTAL<-1)
@@ -172,7 +172,7 @@ lines(dataC.h$crps,type='o',pch=pch0,col= col0[3],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
 lines(dataD.h$crps,type='o',pch=pch0,col= col0[4],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
-lines(dataE.h$crps,type='o',pch=pch0,col= col0[4],ylim = ylim0,
+lines(dataE.h$crps,type='o',pch=pch0,col= col0[5],ylim = ylim0,
       xlab = '',ylab = '',xaxt='n',yaxt='n',cex.main=2,xaxs="i", yaxs="i")
 grid(nx=NULL,ny=NULL,col = 'lightgray',lty = 'dotted',equilogs = TRUE)
 axis(1,at=seq(0,48,4),labels =seq(0,48,4),cex.axis=1.5,las= HORIZONTAL<-1)

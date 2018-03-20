@@ -11,7 +11,7 @@ file <- paste0(Dir,'info_dates.txt')
 dates <- t(matrix(scan(file),nrow = 1,ncol = 1086))
 ## Extra information
 no_ens <- 30
-name_st <- c('3278')
+name_st <- c('3398')
 ist <- 1
 
 ## Load ensembles for DA Perturbed Precipitation
@@ -117,20 +117,20 @@ for (ilead in 1:49){#48
   verA[ilead,3] <- mean(EnsCrps(forecast,obs0[,ilead]),na.rm = TRUE)
 }# End lead time
 
-# file0 <- paste0(Dir,'xin_data/head/performance_B.txt')
-# write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_C.txt')
-# write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_D.txt')
-# write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_E.txt')
-# write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
-# 
-# file0 <- paste0(Dir,'xin_data/head/performance_A.txt')
-# write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
+file0 <- paste0(Dir,'xin_data/head/performance_B.txt')
+write.table(verB,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/performance_C.txt')
+write.table(verC,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/performance_D.txt')
+write.table(verD,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/performance_E.txt')
+write.table(verE,file = file0,col.names = TRUE,row.names = FALSE)
+
+file0 <- paste0(Dir,'xin_data/head/performance_A.txt')
+write.table(verA,file = file0,col.names = TRUE,row.names = FALSE)
 
 file0 <- paste0(Dir,'xin_data/head/performance_B_rank.txt')
 write.table(rank.B,file = file0,col.names = FALSE,row.names = FALSE)
