@@ -11,7 +11,7 @@ file <- paste0(Dir,'info_dates.txt')
 dates <- t(matrix(scan(file),nrow = 1,ncol = 1086))
 ## Extra information
 no_ens <- 30
-name_st <- c('3398')
+name_st <- c('3278')
 ist <- 1
 
 ## Load ensembles for DA Perturbed Precipitation
@@ -38,7 +38,9 @@ obs0 <- obs[c(1:1084),2:50] ## Remove dates not modelled
 name_file <- paste0(Dir,'head/forecast/sim1/sim_station_',name_st[ist],'.txt')
 sim <- t(matrix(scan(name_file),nrow = 50,ncol = 1085))
 sim1 <- sim[,2:50] ## Remove dates not modelled
-
+## Indexes of missing observed values (NaN) for removal
+ind0 <- unique(which(is.na(obs0)==TRUE,arr.ind = TRUE)[,1])
+num.ranks <- 1084 - length(ind0)
 ## Load biases
 name_file <- paste0(Dir,'head/biases/bias_station_',name_st[ist],'.txt')
 bias <- t(matrix(scan(name_file),nrow = 49,ncol = 30*(1084)))

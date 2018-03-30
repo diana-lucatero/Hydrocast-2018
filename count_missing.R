@@ -9,7 +9,7 @@ file <- paste0(Dir,'info_dates.txt')
 dates <- t(matrix(scan(file),nrow = 1,ncol = 1086))
 ## Extra information
 no_ens <- 30
-name_st <- c('3398')
+name_st <- c('3278')
 ist <- 1
 
 ## Load observations
